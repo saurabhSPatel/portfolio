@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saurabh Singh Patel — Backend & AI Systems Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #111118;
+      --card: #16161f;
+      --border: #2a2a3a;
+      --accent: #6366f1;
+      --accent2: #22d3ee;
+      --green: #4ade80;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --tag-bg: #1e1e2e;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; }
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(10,10,15,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px;
+    }
+    .nav-logo { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 500; font-size: 1rem; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { color: var(--muted); font-size: 0.875rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 6rem 2rem 4rem;
+      background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99,102,241,0.15), transparent);
+      text-align: center;
+    }
+    .hero-inner { max-width: 760px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--tag-bg); border: 1px solid var(--border);
+      padding: 0.35rem 1rem; border-radius: 999px; font-size: 0.8rem;
+      color: var(--accent2); margin-bottom: 2rem;
+    }
+    .hero-badge::before { content: '●'; color: var(--green); font-size: 0.6rem; }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.2rem; }
+    h1 span { color: var(--accent); }
+    .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 580px; margin: 0 auto 2.5rem; }
+    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      padding: 0.75rem 1.75rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500;
+      cursor: pointer; transition: all 0.2s; border: none;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: #818cf8; text-decoration: none; }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--accent2); color: var(--accent2); text-decoration: none; }
+
+    /* SECTIONS */
+    section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+    .section-label { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+    h2 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
+    .divider { width: 40px; height: 3px; background: var(--accent); border-radius: 2px; margin-bottom: 2.5rem; }
+
+    /* SKILLS */
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .skill-tag {
+      background: var(--tag-bg); border: 1px solid var(--border);
+      padding: 0.4rem 0.9rem; border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--muted);
+      transition: all 0.2s;
+    }
+    .skill-tag:hover { border-color: var(--accent); color: var(--text); }
+    .skill-tag.featured { border-color: var(--accent); color: var(--accent2); background: rgba(99,102,241,0.08); }
+
+    /* EXPERIENCE */
+    .exp-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.75rem; margin-bottom: 1.25rem; transition: border-color 0.2s;
+    }
+    .exp-card:hover { border-color: var(--accent); }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+    .exp-title { font-size: 1.05rem; font-weight: 600; }
+    .exp-company { color: var(--accent2); font-size: 0.9rem; margin-top: 0.2rem; }
+    .exp-date { font-size: 0.8rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li { color: var(--muted); font-size: 0.9rem; padding: 0.3rem 0; padding-left: 1.2rem; position: relative; }
+    .exp-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
+    .exp-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .tech-pill {
+      background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3);
+      color: var(--accent); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.25rem; }
+    .project-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.75rem; transition: all 0.2s;
+    }
+    .project-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+    .project-name { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .project-name .icon { font-size: 1.2rem; }
+    .project-desc { color: var(--muted); font-size: 0.875rem; margin-bottom: 1rem; }
+
+    /* CONTACT */
+    .contact-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.6rem;
+      background: var(--card); border: 1px solid var(--border);
+      padding: 0.75rem 1.25rem; border-radius: 8px; color: var(--text); font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+    .contact-link:hover { border-color: var(--accent2); color: var(--accent2); text-decoration: none; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2.5rem; color: var(--muted); font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+    footer span { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">saurabh.dev</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="hero-inner">
+    <div class="hero-badge">Available for remote freelance work</div>
+    <h1>Backend & <span>AI Systems</span> Engineer</h1>
+    <p class="hero-sub">
+      I design scalable distributed systems and AI-enabled platforms in Go and Python.
+      5 years building high-throughput microservices, ML pipelines, and blockchain infrastructure.
+    </p>
+    <div class="hero-cta">
+      <a href="mailto:sp2019027@gmail.com" class="btn btn-primary">Hire Me</a>
+      <a href="https://www.linkedin.com/in/saurabh-singh-patel-007303115" target="_blank" class="btn btn-outline">LinkedIn</a>
+      <a href="https://github.com/saurabhSPatel" target="_blank" class="btn btn-outline">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">// tech stack</div>
+  <h2>Skills</h2>
+  <div class="divider"></div>
+  <div class="skills-grid">
+    <span class="skill-tag featured">Go</span>
+    <span class="skill-tag featured">Python</span>
+    <span class="skill-tag featured">Rust</span>
+    <span class="skill-tag featured">Distributed Systems</span>
+    <span class="skill-tag featured">Machine Learning</span>
+    <span class="skill-tag">Apache Kafka</span>
+    <span class="skill-tag">Kubernetes</span>
+    <span class="skill-tag">Microservices</span>
+    <span class="skill-tag">Hyperledger Fabric</span>
+    <span class="skill-tag">Scikit-learn</span>
+    <span class="skill-tag">Pandas</span>
+    <span class="skill-tag">Redis</span>
+    <span class="skill-tag">PostgreSQL / MariaDB</span>
+    <span class="skill-tag">Docker</span>
+    <span class="skill-tag">Helm</span>
+    <span class="skill-tag">AWS</span>
+    <span class="skill-tag">GKE</span>
+    <span class="skill-tag">Solidity</span>
+    <span class="skill-tag">Django</span>
+    <span class="skill-tag">REST APIs</span>
+    <span class="skill-tag">Event-Driven Architecture</span>
+    <span class="skill-tag">Bash</span>
+    <span class="skill-tag">SQL</span>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">// work history</div>
+  <h2>Experience</h2>
+  <div class="divider"></div>
+
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Senior Software Developer</div>
+        <div class="exp-company">Spydra</div>
+      </div>
+      <div class="exp-date">Jan 2023 — Present · Hyderabad</div>
+    </div>
+    <ul class="exp-bullets">
+      <li>Built AI-powered payment recommendation engine using ML classification (MCC-based behavioral analytics) to optimize cashback outcomes across millions of transactions</li>
+      <li>Architected CBDC interoperable bridge for secure cross-chain asset transfers using Go microservices + Kafka event streaming + Solidity smart contracts</li>
+      <li>Built stateless distributed Rust service with cryptographically secure UTXO token logic — 99.99% uptime, multi-region Kubernetes deployments</li>
+      <li>High-throughput Redis caching layer reducing DB load by 80% and improving query performance 5×</li>
+      <li>Helm-driven CI/CD pipelines for multi-region Hyperledger Fabric — deployment time cut by 60%</li>
+    </ul>
+    <div class="exp-tech">
+      <span class="tech-pill">Go</span>
+      <span class="tech-pill">Rust</span>
+      <span class="tech-pill">Python</span>
+      <span class="tech-pill">Kafka</span>
+      <span class="tech-pill">Kubernetes</span>
+      <span class="tech-pill">Hyperledger Fabric</span>
+      <span class="tech-pill">ML / Scikit-learn</span>
+      <span class="tech-pill">Redis</span>
+      <span class="tech-pill">Solidity</span>
+    </div>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-title">Associate Software Engineer</div>
+        <div class="exp-company">FireEye Security (now Trellix)</div>
+      </div>
+      <div class="exp-date">Aug 2021 — Dec 2022 · Bangalore</div>
+    </div>
+    <ul class="exp-bullets">
+      <li>Built concurrent Go-based notification service handling 10K+ alerts/second using event-processing patterns</li>
+      <li>Implemented data lifecycle and purging workflows in Python — storage costs reduced by 15%</li>
+      <li>Migrated legacy customer portal from Django 1.6 / Python 2.7 → Django 4.0 / Python 3.9</li>
+    </ul>
+    <div class="exp-tech">
+      <span class="tech-pill">Go</span>
+      <span class="tech-pill">Python</span>
+      <span class="tech-pill">Django</span>
+      <span class="tech-pill">Event Processing</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">// key projects</div>
+  <h2>Projects</h2>
+  <div class="divider"></div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-name"><span class="icon">🏦</span> CBDC in a Box</div>
+      <p class="project-desc">End-to-end Central Bank Digital Currency platform enabling retail payments, wholesale interbank settlements, and cross-border forex. Secure distributed infrastructure for token issuance, transfer validation, and real-time settlement across participating banks.</p>
+      <div class="exp-tech">
+        <span class="tech-pill">Go</span>
+        <span class="tech-pill">Gin</span>
+        <span class="tech-pill">Hyperledger Fabric</span>
+        <span class="tech-pill">Kafka</span>
+        <span class="tech-pill">MariaDB</span>
+        <span class="tech-pill">Redis</span>
+        <span class="tech-pill">Kubernetes</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name"><span class="icon">🤖</span> Intelligent Spend Analyzer</div>
+      <p class="project-desc">ML-based transaction analytics and payment recommendation system. Analyzes spending behavior using MCC codes and historical patterns. Classification models with feature engineering and scoring pipelines to optimize discounts and cashback outcomes.</p>
+      <div class="exp-tech">
+        <span class="tech-pill">Python</span>
+        <span class="tech-pill">Scikit-learn</span>
+        <span class="tech-pill">Pandas</span>
+        <span class="tech-pill">SQL</span>
+        <span class="tech-pill">Feature Engineering</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name"><span class="icon">🔔</span> High-Throughput Alert Engine</div>
+      <p class="project-desc">Concurrent Go-based notification service processing 10K+ security alerts per second at FireEye. Designed with event-processing patterns for fault tolerance and horizontal scalability.</p>
+      <div class="exp-tech">
+        <span class="tech-pill">Go</span>
+        <span class="tech-pill">Event Processing</span>
+        <span class="tech-pill">Concurrency</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-name"><span class="icon">🔐</span> SCADA Modbus Security Research</div>
+      <p class="project-desc">Published research on deception attacks against SCADA Modbus Protocol with CVSS-based threat scoring. Presented at ANTIC-2021, published in Springer Networks and Systems (2022).</p>
+      <div class="exp-tech">
+        <span class="tech-pill">Security Research</span>
+        <span class="tech-pill">SCADA</span>
+        <span class="tech-pill">CVSS</span>
+        <span class="tech-pill">Published</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">// get in touch</div>
+  <h2>Let's Work Together</h2>
+  <div class="divider"></div>
+  <p style="color: var(--muted); max-width: 520px;">
+    Open to remote freelance projects in backend systems, distributed architecture, AI/ML integration, and blockchain engineering. Let's build something great.
+  </p>
+  <div class="contact-links">
+    <a href="mailto:sp2019027@gmail.com" class="contact-link">📧 sp2019027@gmail.com</a>
+    <a href="https://www.linkedin.com/in/saurabh-singh-patel-007303115" target="_blank" class="contact-link">💼 LinkedIn</a>
+    <a href="https://github.com/saurabhSPatel" target="_blank" class="contact-link">🐙 GitHub</a>
+    <a href="tel:+918707028285" class="contact-link">📱 +91 8707028285</a>
+  </div>
+</section>
+
+<footer>
+  Built with ❤️ by <span>Saurabh Singh Patel</span> · Hyderabad, India
+</footer>
+
+</body>
+</html>
