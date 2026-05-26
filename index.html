@@ -1,409 +1,620 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Saurabh Singh Patel — Backend & AI Systems Engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --bg: #0a0a0f;
-      --bg2: #111118;
-      --card: #16161f;
-      --border: #2a2a3a;
-      --accent: #6366f1;
-      --accent2: #22d3ee;
-      --green: #4ade80;
-      --text: #e2e8f0;
-      --muted: #94a3b8;
-      --tag-bg: #1e1e2e;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; }
-    a { color: var(--accent2); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saurabh Singh Patel — Backend & Systems Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+:root{
+  --ink:#1a1916;--ink-2:#3d3c38;--ink-3:#6b6a64;--ink-4:#9e9c94;
+  --paper:#f5f3ee;--paper-2:#eceae3;--paper-3:#e0ddd4;
+  --rule:#d4d1c6;--rule-2:#c4c0b3;
+  --lime:#b8f060;--teal:#18a080;--amber:#e8a020;--red:#d64030;--blue:#2060c8;
+  --mono:'IBM Plex Mono',monospace;
+  --serif:'Fraunces',serif;
+  --sans:'DM Sans',sans-serif;
+  --r:6px;--r-lg:12px;
+  --max:1020px;
+}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(10,10,15,0.85); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 60px;
-    }
-    .nav-logo { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-weight: 500; font-size: 1rem; }
-    .nav-links { display: flex; gap: 2rem; }
-    .nav-links a { color: var(--muted); font-size: 0.875rem; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--text); text-decoration: none; }
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(245,243,238,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.nav-inner{max-width:var(--max);margin:0 auto;padding:0 32px;height:52px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.nav-logo span{color:var(--teal)}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:11px;color:var(--ink-3);text-decoration:none;letter-spacing:.04em;text-transform:uppercase;transition:color .15s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{background:var(--ink);color:var(--paper)!important;padding:7px 16px;border-radius:20px;font-size:11px!important}
+.nav-cta:hover{background:var(--ink-2)!important;color:var(--paper)!important}
+@media(max-width:680px){.nav-links{display:none}}
 
-    /* HERO */
-    .hero {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      padding: 6rem 2rem 4rem;
-      background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99,102,241,0.15), transparent);
-      text-align: center;
-    }
-    .hero-inner { max-width: 760px; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--tag-bg); border: 1px solid var(--border);
-      padding: 0.35rem 1rem; border-radius: 999px; font-size: 0.8rem;
-      color: var(--accent2); margin-bottom: 2rem;
-    }
-    .hero-badge::before { content: '●'; color: var(--green); font-size: 0.6rem; }
-    h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; line-height: 1.2; margin-bottom: 1.2rem; }
-    h1 span { color: var(--accent); }
-    .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 580px; margin: 0 auto 2.5rem; }
-    .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn {
-      padding: 0.75rem 1.75rem; border-radius: 8px; font-size: 0.9rem; font-weight: 500;
-      cursor: pointer; transition: all 0.2s; border: none;
-    }
-    .btn-primary { background: var(--accent); color: #fff; }
-    .btn-primary:hover { background: #818cf8; text-decoration: none; }
-    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
-    .btn-outline:hover { border-color: var(--accent2); color: var(--accent2); text-decoration: none; }
+/* ── HERO ── */
+.hero{max-width:var(--max);margin:0 auto;padding:120px 32px 80px;display:grid;grid-template-columns:1fr auto;gap:64px;align-items:start}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding:96px 24px 60px;gap:40px}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--teal);background:#18a08015;border:1px solid #18a08030;padding:5px 12px;border-radius:20px;margin-bottom:24px}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-name{font-family:var(--serif);font-size:clamp(38px,5vw,58px);font-weight:700;letter-spacing:-.03em;line-height:1.0;color:var(--ink);margin-bottom:6px}
+.hero-name em{font-style:italic;font-weight:300;color:var(--ink-3)}
+.hero-role{font-family:var(--mono);font-size:14px;color:var(--ink-3);margin-bottom:20px;letter-spacing:.02em}
+.hero-desc{font-size:17px;color:var(--ink-2);line-height:1.75;max-width:520px;margin-bottom:32px}
+.hero-desc strong{color:var(--ink);font-weight:600}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;padding:11px 20px;border-radius:6px;text-decoration:none;transition:all .15s;letter-spacing:.02em;font-weight:500}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-primary:hover{background:#2d2c28}
+.btn-outline{border:1px solid var(--rule-2);color:var(--ink-2);background:transparent}
+.btn-outline:hover{border-color:var(--ink-3);color:var(--ink);background:var(--paper-2)}
+.hero-stats{display:flex;flex-direction:column;gap:16px;min-width:160px}
+@media(max-width:760px){.hero-stats{flex-direction:row;flex-wrap:wrap}}
+.stat{background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--r-lg);padding:16px 20px;text-align:center}
+.stat-num{font-family:var(--serif);font-size:28px;font-weight:700;color:var(--ink);display:block;line-height:1;margin-bottom:4px}
+.stat-label{font-family:var(--mono);font-size:10px;color:var(--ink-4);letter-spacing:.08em;text-transform:uppercase}
 
-    /* SECTIONS */
-    section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
-    .section-label { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
-    h2 { font-size: 2rem; font-weight: 700; margin-bottom: 1rem; }
-    .divider { width: 40px; height: 3px; background: var(--accent); border-radius: 2px; margin-bottom: 2.5rem; }
+/* ── SECTION LAYOUT ── */
+section{border-top:1px solid var(--rule);padding:72px 0}
+section:last-of-type{border-bottom:1px solid var(--rule)}
+.sec-inner{max-width:var(--max);margin:0 auto;padding:0 32px}
+@media(max-width:700px){.sec-inner{padding:0 24px}}
+.sec-label{font-family:var(--mono);font-size:10px;color:var(--ink-4);letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sec-label::before{content:'';display:block;width:20px;height:1px;background:var(--rule-2)}
+.sec-title{font-family:var(--serif);font-size:clamp(24px,3vw,34px);font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px;line-height:1.1}
+.sec-sub{font-size:15px;color:var(--ink-3);line-height:1.65;max-width:540px;margin-bottom:48px}
+p.body{font-size:15px;color:var(--ink-2);line-height:1.8;margin-bottom:14px}
+p.body strong{color:var(--ink);font-weight:600}
 
-    /* SKILLS */
-    .skills-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-    .skill-tag {
-      background: var(--tag-bg); border: 1px solid var(--border);
-      padding: 0.4rem 0.9rem; border-radius: 6px;
-      font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--muted);
-      transition: all 0.2s;
-    }
-    .skill-tag:hover { border-color: var(--accent); color: var(--text); }
-    .skill-tag.featured { border-color: var(--accent); color: var(--accent2); background: rgba(99,102,241,0.08); }
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 340px;gap:64px;align-items:start}
+@media(max-width:800px){.about-grid{grid-template-columns:1fr;gap:40px}}
+.about-text p{font-size:16px;color:var(--ink-2);line-height:1.85;margin-bottom:18px}
+.about-text p:last-child{margin-bottom:0}
+.about-text strong{color:var(--ink);font-weight:600}
+.about-sidebar{display:flex;flex-direction:column;gap:10px}
+.info-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--ink-2)}
+.info-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+.info-label{font-family:var(--mono);font-size:10px;color:var(--ink-4);letter-spacing:.06em;margin-bottom:1px}
+.info-val{font-size:13px;color:var(--ink-2)}
+.info-val a{color:var(--blue);text-decoration:none}.info-val a:hover{text-decoration:underline}
+.divider-sm{height:1px;background:var(--rule);margin:6px 0}
 
-    /* EXPERIENCE */
-    .exp-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-      padding: 1.75rem; margin-bottom: 1.25rem; transition: border-color 0.2s;
-    }
-    .exp-card:hover { border-color: var(--accent); }
-    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
-    .exp-title { font-size: 1.05rem; font-weight: 600; }
-    .exp-company { color: var(--accent2); font-size: 0.9rem; margin-top: 0.2rem; }
-    .exp-date { font-size: 0.8rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
-    .exp-bullets { list-style: none; }
-    .exp-bullets li { color: var(--muted); font-size: 0.9rem; padding: 0.3rem 0; padding-left: 1.2rem; position: relative; }
-    .exp-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
-    .exp-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
-    .tech-pill {
-      background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3);
-      color: var(--accent); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 4px;
-      font-family: 'JetBrains Mono', monospace;
-    }
+/* ── SKILLS ── */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:700px){.skills-grid{grid-template-columns:1fr}}
+.skill-group{background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--r-lg);padding:20px 22px}
+.sg-title{font-family:var(--mono);font-size:10px;color:var(--ink-4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:6px}
+.sg-icon{font-size:14px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--mono);font-size:11px;color:var(--ink-2);background:var(--paper-3);border:1px solid var(--rule);padding:4px 10px;border-radius:4px;white-space:nowrap}
 
-    /* PROJECTS */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 1.25rem; }
-    .project-card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-      padding: 1.75rem; transition: all 0.2s;
-    }
-    .project-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
-    .project-name { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
-    .project-name .icon { font-size: 1.2rem; }
-    .project-desc { color: var(--muted); font-size: 0.875rem; margin-bottom: 1rem; }
+/* ── EXPERIENCE ── */
+.exp-list{display:flex;flex-direction:column;gap:0}
+.exp-item{display:grid;grid-template-columns:1fr;padding:32px 0;border-bottom:1px solid var(--rule)}
+.exp-item:last-child{border-bottom:none;padding-bottom:0}
+.exp-header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.exp-role{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:4px;line-height:1.2}
+.exp-company{font-family:var(--mono);font-size:12px;color:var(--teal);font-weight:500}
+.exp-meta{font-family:var(--mono);font-size:11px;color:var(--ink-4);text-align:right;white-space:nowrap;margin-top:2px}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.exp-bullet{display:flex;gap:10px;font-size:14px;color:var(--ink-2);line-height:1.65}
+.exp-bullet::before{content:'→';color:var(--ink-4);flex-shrink:0;font-family:var(--mono);font-size:12px;margin-top:2px}
+.exp-bullet strong{color:var(--ink);font-weight:500}
+.exp-tags{display:flex;flex-wrap:wrap;gap:6px}
+.exp-tag{font-family:var(--mono);font-size:10px;color:var(--ink-3);background:var(--paper-3);border:1px solid var(--rule);padding:3px 8px;border-radius:4px}
 
-    /* CONTACT */
-    .contact-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
-    .contact-link {
-      display: flex; align-items: center; gap: 0.6rem;
-      background: var(--card); border: 1px solid var(--border);
-      padding: 0.75rem 1.25rem; border-radius: 8px; color: var(--text); font-size: 0.875rem;
-      transition: all 0.2s;
-    }
-    .contact-link:hover { border-color: var(--accent2); color: var(--accent2); text-decoration: none; }
+/* ── PROJECTS (Engineering OS) ── */
+.projects-intro{background:var(--ink);border-radius:var(--r-lg);padding:28px 32px;margin-bottom:32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.pi-text{color:rgba(245,243,238,.7);font-size:14px;line-height:1.6;max-width:560px}
+.pi-text strong{color:var(--paper)}
+.pi-link{font-family:var(--mono);font-size:12px;color:var(--lime);border:1px solid rgba(184,240,96,.3);padding:8px 16px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:background .15s}
+.pi-link:hover{background:rgba(184,240,96,.08)}
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:32px}
+@media(max-width:680px){.proj-grid{grid-template-columns:1fr}}
+.proj-card{background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--r-lg);padding:22px;text-decoration:none;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
+.proj-card:hover{border-color:var(--rule-2);transform:translateY(-1px)}
+.pc-icon{font-size:22px}
+.pc-name{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--ink);line-height:1.2}
+.pc-desc{font-size:13px;color:var(--ink-3);line-height:1.6;flex:1}
+.pc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.pc-tag{font-family:var(--mono);font-size:9px;color:var(--ink-4);border:1px solid var(--rule);padding:2px 7px;border-radius:3px}
 
-    /* FOOTER */
-    footer {
-      text-align: center; padding: 2.5rem; color: var(--muted); font-size: 0.8rem;
-      border-top: 1px solid var(--border);
-    }
-    footer span { color: var(--accent); }
+/* ── ENGINEERING OS COURSES ── */
+.eos-section-label{font-family:var(--mono);font-size:10px;color:var(--ink-4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
+.eos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:800px){.eos-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.eos-grid{grid-template-columns:1fr}}
+.eos-card{background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--r-lg);padding:16px 18px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:border-color .15s}
+.eos-card:hover{border-color:var(--rule-2);background:var(--paper-3)}
+.eos-icon{font-size:16px}
+.eos-name{font-size:13px;font-weight:500;color:var(--ink);line-height:1.3}
+.eos-desc{font-family:var(--mono);font-size:10px;color:var(--ink-4)}
 
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .projects-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+/* ── EDUCATION ── */
+.edu-list{display:flex;flex-direction:column;gap:0}
+.edu-item{padding:28px 0;border-bottom:1px solid var(--rule)}
+.edu-item:last-child{border-bottom:none;padding-bottom:0}
+.edu-deg{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--ink);margin-bottom:4px;line-height:1.2}
+.edu-school{font-family:var(--mono);font-size:12px;color:var(--teal);margin-bottom:2px}
+.edu-meta{font-family:var(--mono);font-size:11px;color:var(--ink-4);margin-bottom:12px}
+.edu-bullets{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.edu-bullet{display:flex;gap:10px;font-size:13px;color:var(--ink-2);line-height:1.6}
+.edu-bullet::before{content:'·';color:var(--ink-4);flex-shrink:0;font-family:var(--mono)}
+
+/* ── PUBLICATION ── */
+.pub-card{background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--r-lg);padding:24px 28px}
+.pub-title{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:6px;line-height:1.3}
+.pub-venue{font-family:var(--mono);font-size:11px;color:var(--teal);margin-bottom:14px}
+.pub-bullets{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.pub-bullet{display:flex;gap:10px;font-size:13px;color:var(--ink-2);line-height:1.6}
+.pub-bullet::before{content:'→';color:var(--ink-4);flex-shrink:0;font-family:var(--mono);font-size:12px;margin-top:2px}
+
+/* ── CONTACT ── */
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media(max-width:700px){.contact-layout{grid-template-columns:1fr}}
+.contact-text p{font-size:16px;color:var(--ink-2);line-height:1.8;margin-bottom:14px}
+.contact-text strong{color:var(--ink);font-weight:600}
+.contact-links{display:flex;flex-direction:column;gap:10px}
+.contact-link{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--r-lg);text-decoration:none;transition:border-color .15s,background .15s}
+.contact-link:hover{border-color:var(--rule-2);background:var(--paper-3)}
+.cl-icon{font-size:18px;flex-shrink:0}
+.cl-label{font-family:var(--mono);font-size:10px;color:var(--ink-4);letter-spacing:.06em;margin-bottom:2px}
+.cl-val{font-size:14px;color:var(--ink);font-weight:500}
+.availability{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--teal);background:#18a08012;border:1px solid #18a08028;padding:6px 14px;border-radius:20px;margin-bottom:24px}
+.availability::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--teal)}
+
+/* ── FOOTER ── */
+footer{padding:32px 0;text-align:center}
+.footer-inner{max-width:var(--max);margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-copy{font-family:var(--mono);font-size:11px;color:var(--ink-4)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-family:var(--mono);font-size:11px;color:var(--ink-4);text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:var(--ink)}
+</style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
-  <div class="nav-logo">saurabh.dev</div>
-  <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#education">Education</a>
-    <a href="#publications">Publications</a>
-    <a href="#contact">Contact</a>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">saurabh<span>.dev</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="about">
-  <div class="hero-inner">
-   
-    <h1>Backend & <span>AI Systems</span> Engineer</h1>
-    <p class="hero-sub">
-      I design scalable distributed systems and AI-enabled platforms in Go and Python.
-      5 years building high-throughput microservices, ML pipelines, and blockchain infrastructure.
-    </p>
-    <div class="hero-cta">
-      <a href="mailto:sp2019027@gmail.com" class="btn btn-primary">Get In Touch</a>
-      <a href="https://www.linkedin.com/in/saurabh-singh-patel-007303115" target="_blank" class="btn btn-outline">LinkedIn</a>
-      <a href="https://github.com/saurabhSPatel" target="_blank" class="btn btn-outline">GitHub</a>
+<div class="hero">
+  <div>
+    <div class="hero-badge">Available for new opportunities</div>
+    <h1 class="hero-name">Saurabh<br><em>Singh Patel</em></h1>
+    <div class="hero-role">// Backend & Systems Engineer · Hyderabad</div>
+    <p class="hero-desc">I build <strong>distributed systems and AI-enabled platforms</strong> that handle real-world scale. 5 years across fintech, security, and blockchain — designing the infrastructure that keeps things fast, reliable, and correct when it matters.</p>
+    <div class="hero-actions">
+      <a href="mailto:sp2019027@gmail.com" class="btn btn-primary">✉ Get in touch</a>
+      <a href="https://github.com/saurabhSPatel" target="_blank" class="btn btn-outline">⌥ GitHub</a>
+      <a href="https://www.linkedin.com/in/saurabh-singh-patel-007303115" target="_blank" class="btn btn-outline">in LinkedIn</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">5+</span>
+      <span class="stat-label">Years exp.</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">10K+</span>
+      <span class="stat-label">Events/sec</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">99.99%</span>
+      <span class="stat-label">Uptime SLA</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">80%</span>
+      <span class="stat-label">DB load ↓</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-inner">
+    <div class="sec-label">About me</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a backend and systems engineer who's spent the last five years close to the infrastructure — writing Go services that move money across blockchain networks, building ML pipelines that recommend where to optimise cashback across millions of transactions, and architecting the event-driven systems that tie them together.</p>
+        <p>Before Spydra, I was at <strong>FireEye (now Trellix)</strong> building concurrent notification infrastructure that processed <strong>10,000+ security alerts per second</strong>. Before that, I spent two years at IIIT Allahabad researching SCADA security, which ended up as a <strong>published paper in Springer's Networks and Systems series</strong>.</p>
+        <p>What I care about most: systems that fail gracefully, code that a future engineer will understand, and the unglamorous work of making something actually reliable — not just fast on a demo. Outside work, I built <strong>Engineering OS</strong>, an open learning platform with deep-dive courses on system design, distributed systems, ML, security, and DSA. It's the resource I wish had existed when I was getting started.</p>
+        <p>Currently based in Hyderabad. Open to remote, hybrid, or on-site work across Hyderabad, Noida, and Greater Noida.</p>
+      </div>
+      <div>
+        <div class="about-sidebar">
+          <div class="info-row">
+            <span class="info-icon">📍</span>
+            <div><div class="info-label">Location</div><div class="info-val">Hyderabad, India</div></div>
+          </div>
+          <div class="divider-sm"></div>
+          <div class="info-row">
+            <span class="info-icon">✉</span>
+            <div><div class="info-label">Email</div><div class="info-val"><a href="mailto:sp2019027@gmail.com">sp2019027@gmail.com</a></div></div>
+          </div>
+          <div class="divider-sm"></div>
+          <div class="info-row">
+            <span class="info-icon">💼</span>
+            <div><div class="info-label">LinkedIn</div><div class="info-val"><a href="https://www.linkedin.com/in/saurabh-singh-patel-007303115" target="_blank">saurabh-singh-patel</a></div></div>
+          </div>
+          <div class="divider-sm"></div>
+          <div class="info-row">
+            <span class="info-icon">⌥</span>
+            <div><div class="info-label">GitHub</div><div class="info-val"><a href="https://github.com/saurabhSPatel" target="_blank">saurabhSPatel</a></div></div>
+          </div>
+          <div class="divider-sm"></div>
+          <div class="info-row">
+            <span class="info-icon">📱</span>
+            <div><div class="info-label">Phone</div><div class="info-val"><a href="tel:+918707028285">+91 8707028285</a></div></div>
+          </div>
+          <div class="divider-sm"></div>
+          <div class="info-row">
+            <span class="info-icon">🎓</span>
+            <div><div class="info-label">Education</div><div class="info-val">M.Tech — IIIT Allahabad</div></div>
+          </div>
+          <div class="divider-sm"></div>
+          <div class="info-row">
+            <span class="info-icon">📄</span>
+            <div><div class="info-label">Published</div><div class="info-val"><a href="https://link.springer.com/search?query=Exploiting+Vulnerabilities+SCADA+Modbus+Protocol+ICT+Saurabh+Patel" target="_blank">Springer LNNS · 2022</a></div></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-label">// tech stack</div>
-  <h2>Skills</h2>
-  <div class="divider"></div>
-  <div class="skills-grid">
-    <span class="skill-tag featured">Go</span>
-    <span class="skill-tag featured">Python</span>
-    <span class="skill-tag featured">Rust</span>
-    <span class="skill-tag featured">Distributed Systems</span>
-    <span class="skill-tag featured">Machine Learning</span>
-    <span class="skill-tag">Apache Kafka</span>
-    <span class="skill-tag">Kubernetes</span>
-    <span class="skill-tag">Microservices</span>
-    <span class="skill-tag">Hyperledger Fabric</span>
-    <span class="skill-tag">Scikit-learn</span>
-    <span class="skill-tag">Pandas</span>
-    <span class="skill-tag">Redis</span>
-    <span class="skill-tag">PostgreSQL / MariaDB</span>
-    <span class="skill-tag">Docker</span>
-    <span class="skill-tag">Helm</span>
-    <span class="skill-tag">AWS</span>
-    <span class="skill-tag">GKE</span>
-    <span class="skill-tag">Solidity</span>
-    <span class="skill-tag">Django</span>
-    <span class="skill-tag">REST APIs</span>
-    <span class="skill-tag">Event-Driven Architecture</span>
-    <span class="skill-tag">Bash</span>
-    <span class="skill-tag">SQL</span>
+  <div class="sec-inner">
+    <div class="sec-label">Technical skills</div>
+    <h2 class="sec-title">What I work with</h2>
+    <p class="sec-sub">Accumulated across production systems handling real load — not toy projects.</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="sg-title"><span class="sg-icon">⚙</span> Languages</div>
+        <div class="skill-tags">
+          <span class="tag">Go</span><span class="tag">Python</span><span class="tag">Rust</span>
+          <span class="tag">SQL</span><span class="tag">Bash</span><span class="tag">Solidity</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-title"><span class="sg-icon">🏗</span> Systems &amp; Architecture</div>
+        <div class="skill-tags">
+          <span class="tag">Distributed Systems</span><span class="tag">Microservices</span>
+          <span class="tag">Event-Driven</span><span class="tag">REST APIs</span><span class="tag">gRPC</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-title"><span class="sg-icon">📨</span> Messaging &amp; Infra</div>
+        <div class="skill-tags">
+          <span class="tag">Apache Kafka</span><span class="tag">Redis</span>
+          <span class="tag">PostgreSQL</span><span class="tag">MariaDB</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-title"><span class="sg-icon">☸</span> Cloud &amp; DevOps</div>
+        <div class="skill-tags">
+          <span class="tag">Kubernetes</span><span class="tag">Docker</span>
+          <span class="tag">Helm</span><span class="tag">AWS</span><span class="tag">GKE</span>
+          <span class="tag">CI/CD</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-title"><span class="sg-icon">🧠</span> ML &amp; AI</div>
+        <div class="skill-tags">
+          <span class="tag">Scikit-learn</span><span class="tag">Pandas</span>
+          <span class="tag">ML Pipelines</span><span class="tag">RAG Systems</span>
+          <span class="tag">LLMOps</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="sg-title"><span class="sg-icon">⛓</span> Blockchain</div>
+        <div class="skill-tags">
+          <span class="tag">Hyperledger Fabric</span><span class="tag">Solidity</span>
+          <span class="tag">UTXO</span><span class="tag">CBDC</span><span class="tag">Smart Contracts</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-label">// work history</div>
-  <h2>Experience</h2>
-  <div class="divider"></div>
+  <div class="sec-inner">
+    <div class="sec-label">Work history</div>
+    <h2 class="sec-title">Where I've worked</h2>
+    <p class="sec-sub">Each role left something real behind — systems still running in production, not slides.</p>
+    <div class="exp-list">
 
-  <div class="exp-card">
-    <div class="exp-header">
-      <div>
-        <div class="exp-title">Senior Software Developer</div>
-        <div class="exp-company">Spydra</div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Senior Software Developer</div>
+            <div class="exp-company">Spydra · Hyderabad</div>
+          </div>
+          <div class="exp-meta">Jan 2023 — Present<br>2+ years</div>
+        </div>
+        <ul class="exp-bullets">
+          <li class="exp-bullet">Built an <strong>AI-powered payment recommendation engine</strong> using ML classification on MCC-based behavioural analytics — optimised cashback outcomes across millions of transactions with feature engineering and scoring pipelines in Python and Scikit-learn</li>
+          <li class="exp-bullet">Architected a <strong>CBDC interoperable bridge</strong> for secure cross-chain asset transfers: Go microservices + Kafka event streaming + Solidity smart contracts + Hyperledger Fabric — production infrastructure for a central bank digital currency platform</li>
+          <li class="exp-bullet">Built a <strong>stateless distributed Rust service</strong> with cryptographically secure UTXO token logic — 99.99% uptime across multi-region Kubernetes deployments, handling the highest-value transaction paths</li>
+          <li class="exp-bullet">Designed a <strong>high-throughput Redis caching layer</strong> that reduced database load by 80% and improved query performance 5× across the payments platform</li>
+          <li class="exp-bullet">Built <strong>Helm-driven CI/CD pipelines</strong> for multi-region Hyperledger Fabric deployments — cut deployment time by 60% and eliminated manual environment configuration</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Go</span><span class="exp-tag">Rust</span><span class="exp-tag">Python</span>
+          <span class="exp-tag">Kafka</span><span class="exp-tag">Kubernetes</span>
+          <span class="exp-tag">Hyperledger Fabric</span><span class="exp-tag">Scikit-learn</span>
+          <span class="exp-tag">Redis</span><span class="exp-tag">Solidity</span>
+        </div>
       </div>
-      <div class="exp-date">Jan 2023 — Present · Hyderabad</div>
-    </div>
-    <ul class="exp-bullets">
-      <li>Built AI-powered payment recommendation engine using ML classification (MCC-based behavioral analytics) to optimize cashback outcomes across millions of transactions</li>
-      <li>Architected CBDC interoperable bridge for secure cross-chain asset transfers using Go microservices + Kafka event streaming + Solidity smart contracts</li>
-      <li>Built stateless distributed Rust service with cryptographically secure UTXO token logic — 99.99% uptime, multi-region Kubernetes deployments</li>
-      <li>High-throughput Redis caching layer reducing DB load by 80% and improving query performance 5×</li>
-      <li>Helm-driven CI/CD pipelines for multi-region Hyperledger Fabric — deployment time cut by 60%</li>
-    </ul>
-    <div class="exp-tech">
-      <span class="tech-pill">Go</span>
-      <span class="tech-pill">Rust</span>
-      <span class="tech-pill">Python</span>
-      <span class="tech-pill">Kafka</span>
-      <span class="tech-pill">Kubernetes</span>
-      <span class="tech-pill">Hyperledger Fabric</span>
-      <span class="tech-pill">ML / Scikit-learn</span>
-      <span class="tech-pill">Redis</span>
-      <span class="tech-pill">Solidity</span>
-    </div>
-  </div>
 
-  <div class="exp-card">
-    <div class="exp-header">
-      <div>
-        <div class="exp-title">Associate Software Engineer</div>
-        <div class="exp-company">FireEye Security (now Trellix)</div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Associate Software Engineer</div>
+            <div class="exp-company">FireEye Security (now Trellix) · Bangalore</div>
+          </div>
+          <div class="exp-meta">Aug 2021 — Dec 2022<br>1.5 years</div>
+        </div>
+        <ul class="exp-bullets">
+          <li class="exp-bullet">Built a <strong>concurrent Go-based notification service</strong> processing 10,000+ security alerts per second — designed with event-processing patterns for fault tolerance and horizontal scalability</li>
+          <li class="exp-bullet">Implemented <strong>data lifecycle and purging workflows</strong> in Python across the security data platform — reduced storage costs by 15% with zero impact on query performance</li>
+          <li class="exp-bullet">Led the <strong>Django migration</strong> from 1.6/Python 2.7 → 4.0/Python 3.9 on the customer portal — including data migrations, dependency upgrades, and regression testing across 200+ endpoints</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Go</span><span class="exp-tag">Python</span>
+          <span class="exp-tag">Django</span><span class="exp-tag">Event Processing</span>
+          <span class="exp-tag">Concurrency</span>
+        </div>
       </div>
-      <div class="exp-date">Aug 2021 — Dec 2022 · Bangalore</div>
-    </div>
-    <ul class="exp-bullets">
-      <li>Built concurrent Go-based notification service handling 10K+ alerts/second using event-processing patterns</li>
-      <li>Implemented data lifecycle and purging workflows in Python — storage costs reduced by 15%</li>
-      <li>Migrated legacy customer portal from Django 1.6 / Python 2.7 → Django 4.0 / Python 3.9</li>
-    </ul>
-    <div class="exp-tech">
-      <span class="tech-pill">Go</span>
-      <span class="tech-pill">Python</span>
-      <span class="tech-pill">Django</span>
-      <span class="tech-pill">Event Processing</span>
-    </div>
-  </div>
-</section>
 
-<!-- EDUCATION -->
-<section id="education">
-  <div class="section-label">// academics</div>
-  <h2>Education</h2>
-  <div class="divider"></div>
-
-  <div class="exp-card">
-    <div class="exp-header">
-      <div>
-        <div class="exp-title">M.Tech — Information Technology (Information Security)</div>
-        <div class="exp-company">Indian Institute of Information Technology Allahabad (IIIT-A)</div>
-      </div>
-      <div class="exp-date">Aug 2019 — June 2021 · Prayagraj</div>
-    </div>
-    <ul class="exp-bullets">
-      <li>Specialization in Information Security, cryptography, and network security</li>
-      <li>Elected as Senator at Students' Gymkhana — spearheaded initiatives to improve campus life</li>
-      <li>Teaching Assistant — conducted workshops on advanced programming and cybersecurity</li>
-      <li>Published research paper presented at ANTIC-2021 international conference</li>
-    </ul>
-    <div class="exp-tech">
-      <span class="tech-pill">Information Security</span>
-      <span class="tech-pill">Cryptography</span>
-      <span class="tech-pill">Network Security</span>
-      <span class="tech-pill">SCADA</span>
-    </div>
-  </div>
-
-  <div class="exp-card">
-    <div class="exp-header">
-      <div>
-        <div class="exp-title">B.Tech — Computer Science Engineering</div>
-        <div class="exp-company">Feroze Gandhi Institute of Engineering and Technology (FGIET)</div>
-      </div>
-      <div class="exp-date">Aug 2014 — July 2018 · Raebareli</div>
-    </div>
-    <ul class="exp-bullets">
-      <li>Foundation in computer science, algorithms, data structures, and software engineering</li>
-    </ul>
-    <div class="exp-tech">
-      <span class="tech-pill">Computer Science</span>
-      <span class="tech-pill">Algorithms</span>
-      <span class="tech-pill">Data Structures</span>
     </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-  <div class="section-label">// key projects</div>
-  <h2>Projects</h2>
-  <div class="divider"></div>
-  <div class="projects-grid">
+  <div class="sec-inner">
+    <div class="sec-label">Projects</div>
+    <h2 class="sec-title">Things I've built</h2>
+    <p class="sec-sub">Production systems and a learning platform I built from scratch.</p>
 
-    <div class="project-card">
-      <div class="project-name"><span class="icon">🏦</span> CBDC in a Box</div>
-      <p class="project-desc">End-to-end Central Bank Digital Currency platform enabling retail payments, wholesale interbank settlements, and cross-border forex. Secure distributed infrastructure for token issuance, transfer validation, and real-time settlement across participating banks.</p>
-      <div class="exp-tech">
-        <span class="tech-pill">Go</span>
-        <span class="tech-pill">Gin</span>
-        <span class="tech-pill">Hyperledger Fabric</span>
-        <span class="tech-pill">Kafka</span>
-        <span class="tech-pill">MariaDB</span>
-        <span class="tech-pill">Redis</span>
-        <span class="tech-pill">Kubernetes</span>
-      </div>
+    <!-- Work projects -->
+    <div class="proj-grid">
+      <a href="#" class="proj-card">
+        <div class="pc-icon">🏦</div>
+        <div class="pc-name">CBDC in a Box</div>
+        <div class="pc-desc">End-to-end Central Bank Digital Currency platform — retail payments, wholesale interbank settlements, cross-border forex. Secure distributed infrastructure for token issuance, transfer validation, and real-time settlement across participating banks.</div>
+        <div class="pc-tags">
+          <span class="pc-tag">Go</span><span class="pc-tag">Hyperledger Fabric</span><span class="pc-tag">Kafka</span><span class="pc-tag">Redis</span><span class="pc-tag">K8s</span>
+        </div>
+      </a>
+      <a href="#" class="proj-card">
+        <div class="pc-icon">🤖</div>
+        <div class="pc-name">Intelligent Spend Analyzer</div>
+        <div class="pc-desc">ML-based transaction analytics and payment recommendation engine. Analyses spending behaviour using MCC codes and historical patterns. Classification models with feature engineering and scoring pipelines to optimise discounts and cashback outcomes at scale.</div>
+        <div class="pc-tags">
+          <span class="pc-tag">Python</span><span class="pc-tag">Scikit-learn</span><span class="pc-tag">Pandas</span><span class="pc-tag">SQL</span>
+        </div>
+      </a>
+      <a href="#" class="proj-card">
+        <div class="pc-icon">🔔</div>
+        <div class="pc-name">High-Throughput Alert Engine</div>
+        <div class="pc-desc">Concurrent Go-based notification service processing 10K+ security alerts per second at FireEye. Event-processing patterns for fault tolerance, horizontal scalability, and sub-100ms alert delivery under sustained load.</div>
+        <div class="pc-tags">
+          <span class="pc-tag">Go</span><span class="pc-tag">Event Processing</span><span class="pc-tag">Concurrency</span>
+        </div>
+      </a>
+      <a href="#" class="proj-card">
+        <div class="pc-icon">🔐</div>
+        <div class="pc-name">SCADA Modbus Security Research</div>
+        <div class="pc-desc">Published research on deception attacks against SCADA Modbus Protocol with CVSS-based threat scoring. Presented at ANTIC-2021 international conference, published in Springer Networks and Systems series 2022.</div>
+        <div class="pc-tags">
+          <span class="pc-tag">Security Research</span><span class="pc-tag">SCADA</span><span class="pc-tag">CVSS</span><span class="pc-tag">Published</span>
+        </div>
+      </a>
     </div>
 
-    <div class="project-card">
-      <div class="project-name"><span class="icon">🤖</span> Intelligent Spend Analyzer</div>
-      <p class="project-desc">ML-based transaction analytics and payment recommendation system. Analyzes spending behavior using MCC codes and historical patterns. Classification models with feature engineering and scoring pipelines to optimize discounts and cashback outcomes.</p>
-      <div class="exp-tech">
-        <span class="tech-pill">Python</span>
-        <span class="tech-pill">Scikit-learn</span>
-        <span class="tech-pill">Pandas</span>
-        <span class="tech-pill">SQL</span>
-        <span class="tech-pill">Feature Engineering</span>
+    <!-- Engineering OS -->
+    <div class="projects-intro">
+      <div class="pi-text">
+        <strong>Engineering OS</strong> — an open learning platform I built covering system design, distributed systems, ML, security, Kubernetes, Rust, DSA, and more. Twelve deep-dive courses, architecture diagrams throughout, Go code examples, and staff-level interview calibration. Built because the resource didn't exist.
       </div>
+      <a href="https://saurabhspatel.github.io/EngineeringOS/" target="_blank" class="pi-link">↗ Visit Engineering OS</a>
     </div>
 
-    <div class="project-card">
-      <div class="project-name"><span class="icon">🔔</span> High-Throughput Alert Engine</div>
-      <p class="project-desc">Concurrent Go-based notification service processing 10K+ security alerts per second at FireEye. Designed with event-processing patterns for fault tolerance and horizontal scalability.</p>
-      <div class="exp-tech">
-        <span class="tech-pill">Go</span>
-        <span class="tech-pill">Event Processing</span>
-        <span class="tech-pill">Concurrency</span>
-      </div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-name"><span class="icon">🔐</span> SCADA Modbus Security Research</div>
-      <p class="project-desc">Published research on deception attacks against SCADA Modbus Protocol with CVSS-based threat scoring. Presented at ANTIC-2021, published in Springer Networks and Systems (2022).</p>
-      <div class="exp-tech">
-        <span class="tech-pill">Security Research</span>
-        <span class="tech-pill">SCADA</span>
-        <span class="tech-pill">CVSS</span>
-        <span class="tech-pill">Published</span>
-      </div>
+    <div class="eos-section-label">Courses inside Engineering OS</div>
+    <div class="eos-grid">
+      <a href="https://saurabhspatel.github.io/EngineeringOS/system-design-30-day.html" target="_blank" class="eos-card">
+        <div class="eos-icon">🏗</div>
+        <div class="eos-name">System Design in 30 Days</div>
+        <div class="eos-desc">12 patterns · HLD + LLD · AI Agents</div>
+      </a>
+      <a href="https://saurabhspatel.github.io/EngineeringOS/dsa-30-day.html" target="_blank" class="eos-card">
+        <div class="eos-icon">📊</div>
+        <div class="eos-name">DSA — Staff Level</div>
+        <div class="eos-desc">Google L7 · Meta E7 · Video resources</div>
+      </a>
+      <a href="https://saurabhspatel.github.io/EngineeringOS/ml-in-a-month.html" target="_blank" class="eos-card">
+        <div class="eos-icon">🧠</div>
+        <div class="eos-name">ML in 28 Days</div>
+        <div class="eos-desc">Backprop → Transformers → LLMs</div>
+      </a>
+      <a href="https://saurabhspatel.github.io/EngineeringOS/rag-sla-production-ai.html" target="_blank" class="eos-card">
+        <div class="eos-icon">🔍</div>
+        <div class="eos-name">RAG, SLAs &amp; Production AI</div>
+        <div class="eos-desc">End-to-end RAG · SLI/SLO/SLA · LLMOps</div>
+      </a>
+      <a href="https://saurabhspatel.github.io/EngineeringOS/security-in-a-day.html" target="_blank" class="eos-card">
+        <div class="eos-icon">🔒</div>
+        <div class="eos-name">Information Security</div>
+        <div class="eos-desc">Crypto · OWASP · Cloud · IR</div>
+      </a>
+      <a href="https://saurabhspatel.github.io/EngineeringOS/k8s-in-a-day.html" target="_blank" class="eos-card">
+        <div class="eos-icon">☸</div>
+        <div class="eos-name">Kubernetes in a Day</div>
+        <div class="eos-desc">Architecture diagrams · Basics to prod</div>
+      </a>
+      <a href="https://saurabhspatel.github.io/EngineeringOS/go-in-a-day.html" target="_blank" class="eos-card">
+        <div class="eos-icon">🐹</div>
+        <div class="eos-name">Go — Expert Level</div>
+        <div class="eos-desc">GMP scheduler · Channels · pprof</div>
+      </a>
+      <a href="https://saurabhspatel.github.io/EngineeringOS/rust-in-a-day.html" target="_blank" class="eos-card">
+        <div class="eos-icon">🦀</div>
+        <div class="eos-name">Rust in a Day</div>
+        <div class="eos-desc">Ownership · Lifetimes · Async</div>
+      </a>
+      <a href="https://saurabhspatel.github.io/EngineeringOS/db-in-a-day.html" target="_blank" class="eos-card">
+        <div class="eos-icon">🗄</div>
+        <div class="eos-name">Databases in a Day</div>
+        <div class="eos-desc">B-tree · LSM · MVCC · Sharding</div>
+      </a>
+      <a href="https://saurabhspatel.github.io/EngineeringOS/os-in-a-day.html" target="_blank" class="eos-card">
+        <div class="eos-icon">💻</div>
+        <div class="eos-name">OS Internals</div>
+        <div class="eos-desc">Processes · TLB · epoll · io_uring</div>
+      </a>
+      <a href="https://saurabhspatel.github.io/EngineeringOS/docker-in-a-day.html" target="_blank" class="eos-card">
+        <div class="eos-icon">🐳</div>
+        <div class="eos-name">Docker Deep Dive</div>
+        <div class="eos-desc">Namespaces · cgroups · BuildKit</div>
+      </a>
+      <a href="https://saurabhspatel.github.io/EngineeringOS/cicd-in-a-day.html" target="_blank" class="eos-card">
+        <div class="eos-icon">🚀</div>
+        <div class="eos-name">CI/CD &amp; GitOps</div>
+        <div class="eos-desc">ArgoCD · Canary · Vault · Flags</div>
+      </a>
     </div>
 
   </div>
 </section>
 
-<!-- PUBLICATIONS -->
-<section id="publications">
-  <div class="section-label">// research</div>
-  <h2>Publications</h2>
-  <div class="divider"></div>
+<!-- EDUCATION -->
+<section id="education">
+  <div class="sec-inner">
+    <div class="sec-label">Education</div>
+    <h2 class="sec-title">Academic background</h2>
+    <p class="sec-sub">Information security research and computer science foundations.</p>
+    <div class="edu-list">
 
-  <div class="exp-card" style="border-left: 3px solid var(--accent2);">
-    <div class="exp-header">
-      <div>
-        <div class="exp-title">Exploiting Vulnerabilities in the SCADA Modbus Protocol: An ICT-reliant Perspective</div>
-        <div class="exp-company">Springer — Lecture Notes in Networks and Systems (ANTIC-2021)</div>
+      <div class="edu-item">
+        <div class="edu-deg">M.Tech — Information Technology (Information Security)</div>
+        <div class="edu-school">Indian Institute of Information Technology Allahabad (IIIT-A)</div>
+        <div class="edu-meta">Aug 2019 — June 2021 · Prayagraj</div>
+        <ul class="edu-bullets">
+          <li class="edu-bullet">Specialisation in information security, cryptography, and network security — including applied research on industrial control system vulnerabilities</li>
+          <li class="edu-bullet">Elected Senator at Students' Gymkhana — represented the student body and led initiatives to improve campus life</li>
+          <li class="edu-bullet">Teaching Assistant — ran workshops on advanced programming and cybersecurity for undergraduate students</li>
+          <li class="edu-bullet">Published research presented at the ANTIC-2021 international conference, Varanasi (December 2021)</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Information Security</span><span class="exp-tag">Cryptography</span>
+          <span class="exp-tag">Network Security</span><span class="exp-tag">SCADA Research</span>
+        </div>
       </div>
-      <div class="exp-date">Published Feb 18, 2022</div>
+
+      <div class="edu-item">
+        <div class="edu-deg">B.Tech — Computer Science Engineering</div>
+        <div class="edu-school">Feroze Gandhi Institute of Engineering and Technology (FGIET)</div>
+        <div class="edu-meta">Aug 2014 — July 2018 · Raebareli</div>
+        <ul class="edu-bullets">
+          <li class="edu-bullet">Foundation in computer science: algorithms, data structures, operating systems, database systems, and software engineering</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="exp-tag">Computer Science</span><span class="exp-tag">Algorithms</span>
+          <span class="exp-tag">Data Structures</span>
+        </div>
+      </div>
+
     </div>
-    <ul class="exp-bullets">
-      <li>Performed deception attacks on SCADA Modbus Protocol and analyzed threat levels using CVSS scoring</li>
-      <li>Presented at ANTIC-2021 International Conference, Varanasi, India (December 2021)</li>
-      <li>Published in Springer's Networks and Systems series — February 2022</li>
-    </ul>
-    <div style="margin-top:1rem; display:flex; gap:1rem; flex-wrap:wrap;">
-      <a href="https://link.springer.com/search?query=Exploiting+Vulnerabilities+SCADA+Modbus+Protocol+ICT+Saurabh+Patel"
-         target="_blank"
-         style="display:inline-flex;align-items:center;gap:0.4rem;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.4);color:var(--accent2);padding:0.4rem 1rem;border-radius:6px;font-size:0.8rem;font-family:'JetBrains Mono',monospace;">
-        📄 View on Springer
-      </a>
+  </div>
+</section>
+
+<!-- PUBLICATION -->
+<section id="publications">
+  <div class="sec-inner">
+    <div class="sec-label">Research</div>
+    <h2 class="sec-title">Published work</h2>
+    <p class="sec-sub">Peer-reviewed research on industrial control system security.</p>
+    <div class="pub-card">
+      <div class="pub-title">Exploiting Vulnerabilities in the SCADA Modbus Protocol: An ICT-reliant Perspective</div>
+      <div class="pub-venue">Springer — Lecture Notes in Networks and Systems · ANTIC-2021 · Published Feb 2022</div>
+      <ul class="pub-bullets">
+        <li class="pub-bullet">Performed deception attacks against SCADA Modbus Protocol and analysed threat levels using CVSS scoring — demonstrating real-world attack vectors on critical infrastructure</li>
+        <li class="pub-bullet">Presented at the ANTIC-2021 International Conference, Varanasi, India (December 2021)</li>
+        <li class="pub-bullet">Published in Springer's Lecture Notes in Networks and Systems series — February 2022</li>
+      </ul>
+      <a href="https://link.springer.com/search?query=Exploiting+Vulnerabilities+SCADA+Modbus+Protocol+ICT+Saurabh+Patel" target="_blank" class="btn btn-outline" style="align-self:flex-start">📄 View on Springer ↗</a>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label">// get in touch</div>
-  <h2>Let's Connect</h2>
-  <div class="divider"></div>
-  <p style="color: var(--muted); max-width: 520px;">
-    Open to remote freelance projects in backend systems, distributed architecture, AI/ML integration, and blockchain engineering. Also available for on-site/hybrid work in <strong style="color:var(--accent2)">Hyderabad, Noida & Greater Noida</strong>. Let's build something great.
-  </p>
-  <div class="contact-links">
-    <a href="mailto:sp2019027@gmail.com" class="contact-link">📧 sp2019027@gmail.com</a>
-    <a href="https://www.linkedin.com/in/saurabh-singh-patel-007303115" target="_blank" class="contact-link">💼 LinkedIn</a>
-    <a href="https://github.com/saurabhSPatel" target="_blank" class="contact-link">🐙 GitHub</a>
-    <a href="tel:+918707028285" class="contact-link">📱 +91 8707028285</a>
+  <div class="sec-inner">
+    <div class="sec-label">Get in touch</div>
+    <h2 class="sec-title">Let's work together</h2>
+    <p class="sec-sub">Open to backend systems roles, distributed architecture, AI/ML integration, and blockchain engineering.</p>
+    <div class="contact-layout">
+      <div class="contact-text">
+        <div class="availability">Open to new opportunities</div>
+        <p>I'm looking for roles where the engineering problems are genuinely hard — distributed systems at scale, production AI systems that need to be reliable, or blockchain infrastructure that handles real money.</p>
+        <p>I work best in teams that value <strong>understanding the system deeply</strong> over moving fast and breaking things. If that sounds like your team, I'd like to talk.</p>
+        <p>I'm based in <strong>Hyderabad</strong> and open to remote, or on-site/hybrid work in Hyderabad, Noida, and Greater Noida.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:sp2019027@gmail.com" class="contact-link">
+          <span class="cl-icon">✉</span>
+          <div><div class="cl-label">Email</div><div class="cl-val">sp2019027@gmail.com</div></div>
+        </a>
+        <a href="tel:+918707028285" class="contact-link">
+          <span class="cl-icon">📱</span>
+          <div><div class="cl-label">Phone</div><div class="cl-val">+91 8707028285</div></div>
+        </a>
+        <a href="https://www.linkedin.com/in/saurabh-singh-patel-007303115" target="_blank" class="contact-link">
+          <span class="cl-icon">💼</span>
+          <div><div class="cl-label">LinkedIn</div><div class="cl-val">saurabh-singh-patel-007303115</div></div>
+        </a>
+        <a href="https://github.com/saurabhSPatel" target="_blank" class="contact-link">
+          <span class="cl-icon">⌥</span>
+          <div><div class="cl-label">GitHub</div><div class="cl-val">saurabhSPatel</div></div>
+        </a>
+        <a href="https://saurabhspatel.github.io/EngineeringOS/" target="_blank" class="contact-link">
+          <span class="cl-icon">📚</span>
+          <div><div class="cl-label">Engineering OS</div><div class="cl-val">saurabhspatel.github.io/EngineeringOS</div></div>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
 <footer>
-  Built with ❤️ by <span>Saurabh Singh Patel</span> · Hyderabad · Noida · Greater Noida
+  <div class="footer-inner">
+    <span class="footer-copy">© 2026 Saurabh Singh Patel · Hyderabad</span>
+    <div class="footer-links">
+      <a href="https://github.com/saurabhSPatel" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/saurabh-singh-patel-007303115" target="_blank">LinkedIn</a>
+      <a href="https://saurabhspatel.github.io/EngineeringOS/" target="_blank">Engineering OS</a>
+    </div>
+  </div>
 </footer>
 
 </body>
