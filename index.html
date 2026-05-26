@@ -101,20 +101,20 @@ p.body strong{color:var(--ink);font-weight:600}
 .exp-role{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:4px;line-height:1.2}
 .exp-company{font-family:var(--mono);font-size:12px;color:var(--teal);font-weight:500}
 .exp-meta{font-family:var(--mono);font-size:11px;color:var(--ink-4);text-align:right;white-space:nowrap;margin-top:2px}
-.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
-.exp-bullet{display:flex;gap:10px;font-size:14px;color:var(--ink-2);line-height:1.65}
-.exp-bullet::before{content:'→';color:var(--ink-4);flex-shrink:0;font-family:var(--mono);font-size:12px;margin-top:2px}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.exp-bullet{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--ink-2);line-height:1.7}
+.exp-bullet::before{content:'→';color:var(--teal);flex-shrink:0;font-family:var(--mono);font-size:11px;margin-top:3px;opacity:.7}
 .exp-bullet strong{color:var(--ink);font-weight:500}
 .exp-tags{display:flex;flex-wrap:wrap;gap:6px}
 .exp-tag{font-family:var(--mono);font-size:10px;color:var(--ink-3);background:var(--paper-3);border:1px solid var(--rule);padding:3px 8px;border-radius:4px}
 
-/* ── PROJECTS (Engineering OS) ── */
-.projects-intro{background:var(--ink);border-radius:var(--r-lg);padding:28px 32px;margin-bottom:32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.pi-text{color:rgba(245,243,238,.7);font-size:14px;line-height:1.6;max-width:560px}
+/* ── PROJECTS ── */
+.projects-intro{background:var(--ink);border-radius:var(--r-lg);padding:28px 32px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.pi-text{color:rgba(245,243,238,.7);font-size:14px;line-height:1.65;max-width:560px}
 .pi-text strong{color:var(--paper)}
 .pi-link{font-family:var(--mono);font-size:12px;color:var(--lime);border:1px solid rgba(184,240,96,.3);padding:8px 16px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:background .15s}
 .pi-link:hover{background:rgba(184,240,96,.08)}
-.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:32px}
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px}
 @media(max-width:680px){.proj-grid{grid-template-columns:1fr}}
 .proj-card{background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--r-lg);padding:22px;text-decoration:none;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,transform .15s}
 .proj-card:hover{border-color:var(--rule-2);transform:translateY(-1px)}
@@ -123,17 +123,6 @@ p.body strong{color:var(--ink);font-weight:600}
 .pc-desc{font-size:13px;color:var(--ink-3);line-height:1.6;flex:1}
 .pc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
 .pc-tag{font-family:var(--mono);font-size:9px;color:var(--ink-4);border:1px solid var(--rule);padding:2px 7px;border-radius:3px}
-
-/* ── ENGINEERING OS COURSES ── */
-.eos-section-label{font-family:var(--mono);font-size:10px;color:var(--ink-4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px}
-.eos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-@media(max-width:800px){.eos-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:500px){.eos-grid{grid-template-columns:1fr}}
-.eos-card{background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--r-lg);padding:16px 18px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:border-color .15s}
-.eos-card:hover{border-color:var(--rule-2);background:var(--paper-3)}
-.eos-icon{font-size:16px}
-.eos-name{font-size:13px;font-weight:500;color:var(--ink);line-height:1.3}
-.eos-desc{font-family:var(--mono);font-size:10px;color:var(--ink-4)}
 
 /* ── EDUCATION ── */
 .edu-list{display:flex;flex-direction:column;gap:0}
@@ -435,73 +424,9 @@ footer{padding:32px 0;text-align:center}
     <!-- Engineering OS -->
     <div class="projects-intro">
       <div class="pi-text">
-        <strong>Engineering OS</strong> — an open learning platform I built covering system design, distributed systems, ML, security, Kubernetes, Rust, DSA, and more. Twelve deep-dive courses, architecture diagrams throughout, Go code examples, and staff-level interview calibration. Built because the resource didn't exist.
+        <strong>Engineering OS</strong> — an open learning platform I built from scratch. Deep-dive courses on system design, distributed systems, ML, RAG, security, Kubernetes, Go, Rust, DSA, and more — with architecture diagrams throughout and staff-level interview calibration. Built because the resource didn't exist.
       </div>
       <a href="https://saurabhspatel.github.io/EngineeringOS/" target="_blank" class="pi-link">↗ Visit Engineering OS</a>
-    </div>
-
-    <div class="eos-section-label">Courses inside Engineering OS</div>
-    <div class="eos-grid">
-      <a href="https://saurabhspatel.github.io/EngineeringOS/system-design-30-day.html" target="_blank" class="eos-card">
-        <div class="eos-icon">🏗</div>
-        <div class="eos-name">System Design in 30 Days</div>
-        <div class="eos-desc">12 patterns · HLD + LLD · AI Agents</div>
-      </a>
-      <a href="https://saurabhspatel.github.io/EngineeringOS/dsa-30-day.html" target="_blank" class="eos-card">
-        <div class="eos-icon">📊</div>
-        <div class="eos-name">DSA — Staff Level</div>
-        <div class="eos-desc">Google L7 · Meta E7 · Video resources</div>
-      </a>
-      <a href="https://saurabhspatel.github.io/EngineeringOS/ml-in-a-month.html" target="_blank" class="eos-card">
-        <div class="eos-icon">🧠</div>
-        <div class="eos-name">ML in 28 Days</div>
-        <div class="eos-desc">Backprop → Transformers → LLMs</div>
-      </a>
-      <a href="https://saurabhspatel.github.io/EngineeringOS/rag-sla-production-ai.html" target="_blank" class="eos-card">
-        <div class="eos-icon">🔍</div>
-        <div class="eos-name">RAG, SLAs &amp; Production AI</div>
-        <div class="eos-desc">End-to-end RAG · SLI/SLO/SLA · LLMOps</div>
-      </a>
-      <a href="https://saurabhspatel.github.io/EngineeringOS/security-in-a-day.html" target="_blank" class="eos-card">
-        <div class="eos-icon">🔒</div>
-        <div class="eos-name">Information Security</div>
-        <div class="eos-desc">Crypto · OWASP · Cloud · IR</div>
-      </a>
-      <a href="https://saurabhspatel.github.io/EngineeringOS/k8s-in-a-day.html" target="_blank" class="eos-card">
-        <div class="eos-icon">☸</div>
-        <div class="eos-name">Kubernetes in a Day</div>
-        <div class="eos-desc">Architecture diagrams · Basics to prod</div>
-      </a>
-      <a href="https://saurabhspatel.github.io/EngineeringOS/go-in-a-day.html" target="_blank" class="eos-card">
-        <div class="eos-icon">🐹</div>
-        <div class="eos-name">Go — Expert Level</div>
-        <div class="eos-desc">GMP scheduler · Channels · pprof</div>
-      </a>
-      <a href="https://saurabhspatel.github.io/EngineeringOS/rust-in-a-day.html" target="_blank" class="eos-card">
-        <div class="eos-icon">🦀</div>
-        <div class="eos-name">Rust in a Day</div>
-        <div class="eos-desc">Ownership · Lifetimes · Async</div>
-      </a>
-      <a href="https://saurabhspatel.github.io/EngineeringOS/db-in-a-day.html" target="_blank" class="eos-card">
-        <div class="eos-icon">🗄</div>
-        <div class="eos-name">Databases in a Day</div>
-        <div class="eos-desc">B-tree · LSM · MVCC · Sharding</div>
-      </a>
-      <a href="https://saurabhspatel.github.io/EngineeringOS/os-in-a-day.html" target="_blank" class="eos-card">
-        <div class="eos-icon">💻</div>
-        <div class="eos-name">OS Internals</div>
-        <div class="eos-desc">Processes · TLB · epoll · io_uring</div>
-      </a>
-      <a href="https://saurabhspatel.github.io/EngineeringOS/docker-in-a-day.html" target="_blank" class="eos-card">
-        <div class="eos-icon">🐳</div>
-        <div class="eos-name">Docker Deep Dive</div>
-        <div class="eos-desc">Namespaces · cgroups · BuildKit</div>
-      </a>
-      <a href="https://saurabhspatel.github.io/EngineeringOS/cicd-in-a-day.html" target="_blank" class="eos-card">
-        <div class="eos-icon">🚀</div>
-        <div class="eos-name">CI/CD &amp; GitOps</div>
-        <div class="eos-desc">ArgoCD · Canary · Vault · Flags</div>
-      </a>
     </div>
 
   </div>
